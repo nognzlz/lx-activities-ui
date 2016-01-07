@@ -1,0 +1,44 @@
+<div ng-controller="SearchactivitiesCtrl">
+	<div class="row">
+		<div class="col-md-6">
+			<form name="activitiesForm" class="city-selector">
+				<label for="source">
+					<span>Source:</span>
+					<select name="source" ng-model="activity.source">
+						<option value="">All sources</option>
+						<option value="1">TripAdvisor</option>
+						<option value="2">Zerve</option>
+					</select>
+				</label>
+				<label for="city">
+					<span>City:</span>
+					<select name="city" ng-model="activity.city">
+						<option value="">All cities</option>
+						<option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
+					</select>
+				</label>
+				
+				<label for="keyword">
+					<span>Name keyword:</span>
+					<input type="text" ng-model="activity.name">
+				</label>
+				<button ng-click="getActivities()">Get Activities</button><br>
+			</form>
+		</div>
+		<div class="col-md-6"></div>
+		
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card" ng-repeat="activity in activities">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item"><span>Name: </span><span>{{activity.name}}</span></li>
+					<li class="list-group-item"><span>Url: </span><span>{{activity.url}}</span></li>
+					<li class="list-group-item"><span>Price state: </span>{{activity.priceState}}<span></span></li>
+					<li class="list-group-item"><span>{{activity.description}}</span></li>
+					<li class="list-group-item"><span>Atraction types: </span><span ng-repeat="type in activity.attractionTypes">{{type}}{{$last ? ' ' : ', '}}</span></span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

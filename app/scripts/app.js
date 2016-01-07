@@ -24,12 +24,21 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/scraper', {
+        templateUrl: 'views/scraper.html',
+        controller: 'ScraperCtrl',
+        controllerAs: 'scraper'
+      })
+      .when('/searchactivities', {
+        templateUrl: 'views/searchactivities.html',
+        controller: 'SearchactivitiesCtrl',
+        controllerAs: 'searchactivities'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/scraper'
       });
-  });
+  })
+  .config(['$resourceProvider', function($resourceProvider) {
+    // Don't strip trailing slashes from calculated URLs
+    $resourceProvider.defaults.stripTrailingSlashes = false;
+  }]);

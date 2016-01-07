@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name lxActivitiesUiApp.controller:AboutCtrl
+ * @name lxActivitiesUiApp.controller:ScraperCtrl
  * @description
- * # AboutCtrl
+ * # ScraperCtrl
  * Controller of the lxActivitiesUiApp
  */
 angular.module('lxActivitiesUiApp')
-  .controller('AboutCtrl', function () {
+  .controller('ScraperCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
