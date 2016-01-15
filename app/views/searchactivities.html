@@ -4,15 +4,14 @@
 			<form name="activitiesForm" class="city-selector">
 				<label for="source">
 					<span>Source:</span>
-					<select name="source" ng-model="activity.source">
+					<select name="source" ng-model="activityInput.source">
 						<option value="">All sources</option>
-						<option value="1">TripAdvisor</option>
-						<option value="2">Zerve</option>
+						<option ng-repeat="source in sources" value="{{source}}">{{source}}</option>
 					</select>
 				</label>
 				<label for="city">
 					<span>City:</span>
-					<select name="city" ng-model="activity.city">
+					<select name="city" ng-model="activityInput.city">
 						<option value="">All cities</option>
 						<option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
 					</select>
@@ -20,7 +19,7 @@
 				
 				<label for="keyword">
 					<span>Name keyword:</span>
-					<input type="text" ng-model="activity.name">
+					<input type="text" ng-model="activityInput.name">
 				</label>
 				<button ng-click="getActivities()">Get Activities</button><br>
 			</form>
@@ -28,16 +27,40 @@
 		<div class="col-md-6"></div>
 		
 	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="card" ng-repeat="activity in activities">
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item"><span>Name: </span><span>{{activity.name}}</span></li>
-					<li class="list-group-item"><span>Url: </span><span>{{activity.url}}</span></li>
-					<li class="list-group-item"><span>Price state: </span>{{activity.priceState}}<span></span></li>
-					<li class="list-group-item"><span>{{activity.description}}</span></li>
-					<li class="list-group-item"><span>Atraction types: </span><span ng-repeat="type in activity.attractionTypes">{{type}}{{$last ? ' ' : ', '}}</span></span></li>
-				</ul>
+	<div class="results-area" ng-if="activities">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="activities-list">
+					<ul>
+						<li ng-repeat="act in activities" ng-click="getActivity(act.id, $event)">{{act.name}}</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="details-area">
+					<div class="activity-details" ng-if="activity">
+						<div class="row">
+							<div class="col-md-8">
+								<a href="{{activity.url}}">{{activity.name}}</a>
+							</div>
+							<div class="col-md-4">
+								<span>{{activity.priceState}}</span>
+							</div>
+						</div><br>
+						<div class="row">
+							<div class="col-md-12">
+								<div> <span ng-if="!activity.addressInfo.street" class="no-item">&#60;No street&#62;</span>{{activity.addressInfo.street}}</div>
+								<div><span ng-if="!activity.addressInfo.city" class="no-item">&#60;No city&#62;</span>{{activity.addressInfo.city}}, <span ng-if="!activity.addressInfo.province" class="no-item">&#60;No province&#62;</span>{{activity.addressInfo.province}}</div>
+								<div>ZIP code: <span ng-if="!activity.addressInfo.postalCode" class="no-item">&#60;No postalCode&#62;</span>{{activity.addressInfo.postalCode}}</div>
+								<div><span ng-if="!activity.addressInfo.country" class="no-item">&#60;No country&#62;</span>{{activity.addressInfo.country}}</div><br>
+								<div><span ng-if="!activity.description" class="no-item">&#60;No description&#62;</span>{{activity.description}}</div><br>
+								<div><span ng-if="!activity.hours" class="no-item">&#60;No schedule&#62;</span>{{activity.hours}}</div><br>
+								<div>Attraction types:</div>
+								<div><span ng-if="activity.attractionTypes.length == 0" class="no-item">&#60;No attraction tags&#62;</span><span ng-repeat="type in activity.attractionTypes">{{type}}{{$last ? '' : ', '}}</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

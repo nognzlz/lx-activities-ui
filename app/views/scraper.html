@@ -1,13 +1,37 @@
-<form class="city-selector">
-	<label for="source">Source:</label>
-	<select name="origins" id="source">
-		<option value="tripAdvisor">TripAdvisor</option>
-		<option value="zerve">Zerve</option>
-	</select><br>
-	<label for="city">City:</label>
-	<select name="cities" id="city">
-		<option value="chicago">Chicago</option>
-		<option value="las vegas">Las Vegas</option>
-	</select><br>
-	<input type="submit" value="Scrap!">
-</form>
+<div ng-controller="ScraperCtrl">
+	<div class="row">
+		<div class="col-md-6" ng-hide="destinations">
+			<form class="city-selector">
+				<label for="source">Source:
+					<select name="source" ng-model="data.source">
+						<option value="tripadvisor">TripAdvisor</option>
+						<option value="zerve">Zerve</option>
+					</select>
+				</label><br>
+				<label for="city">City:
+					<input type="text" ng-model="data.city" name="city">
+				</label><br>
+				<input type="submit" class="button" value="Retrieve destination" ng-click="retrieveDestinations()">
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div ng-show="destinations">
+				<table class="table destinations-table">
+					<tr>
+						<th>Name</th>
+						<th>Url</th>
+						<th></th>
+					</tr>
+					<tr ng-repeat="dest in destinations">
+						<td>{{dest.name}}</td>
+						<td>{{dest.url}}</td>
+						<td><input type="checkbox" ng-model="destinationUrls[dest.url]"></td>
+					</tr>
+				</table>
+				<center><button ng-click="scrapeDestinations()">Scrape</button></center>
+			</div>
+		</div>
+	</div>
+</div>

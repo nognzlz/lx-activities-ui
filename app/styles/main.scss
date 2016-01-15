@@ -36,14 +36,52 @@ body {
 .city-selector {
   padding: 10px;
   text-align: center;
-  label, button {
+  label, button, .button {
     float: right;
     clear: both;
+    width: auto;
   }
   select, input {
     width: 200px;
+  }
+  button, select, input {
     margin: 5px;
   }
+}
+
+.activities-list {
+  overflow-y: scroll;
+  ul {
+    padding: 0;
+    li {
+      border-bottom: 1px solid #CCC;
+      cursor: default;
+      list-style-type: none;
+      user-select: none;
+    }
+  }
+  .selected {
+    color: #FFF;
+    background: #3A83C2;
+  }
+}
+
+.details-area {
+  padding: 10px;
+  overflow-y: scroll;
+  .no-item {
+    color: #F80000;
+  }
+}
+
+.details-area, .activities-list {
+  height: 500px;
+  border: 1px solid #CCC;
+  margin: 10px 0;
+}
+
+.destinations-table {
+  margin-top: 20px;
 }
 
 /* Custom page footer */

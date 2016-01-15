@@ -21,14 +21,14 @@
 
     <!-- Add your site or application content here -->
     <div class="header">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
           <div class="title col-xs-12">LX Expedia Activities</div>
         </div>
       </div>
     </div>
 
-    <div class="main-section container">
+    <div class="main-section container-fluid">
       <div class="row">
         <div class="col-sm-3">
           <nav class="navbar">
@@ -50,18 +50,6 @@
      
     </div>
 
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
-
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -76,12 +64,16 @@
     <!-- endbower -->
     <!-- endbuild -->
 
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/scraper.js"></script>
         <script src="scripts/controllers/searchactivities.js"></script>
-        <script src="scripts/services/activityservice.js"></script>
+        <script src="scripts/services/activityservice.js"></script>        
+        <script src="scripts/services/scraper.js"></script>
         <!-- endbuild -->
 </body>
 </html>

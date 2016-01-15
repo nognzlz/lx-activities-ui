@@ -9,7 +9,7 @@
  */
 angular.module('lxActivitiesUiApp')
   .service('activityService', ['$resource', function ($resource) {
-    // AngularJS will instantiate a singleton by calling "new" on this function
     this.activities = $resource('http://localhost:8082/services/activity?source=:source&city=:city&name=:name');
     this.cities = $resource('http://localhost:8082/services/cities');
+    this.sources = $resource('http://localhost:8082/services/sources');
   }]);
